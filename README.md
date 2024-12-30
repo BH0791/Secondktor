@@ -3,3 +3,5 @@
 1. ktor
 2. Thymeleaf
 3. CIO
+## Plugins
+ContentNegociation

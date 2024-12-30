@@ -1,6 +1,7 @@
 package fr.hamtec
 
-import fr.hamtec.plugins.configureSerialization
+import fr.hamtec.plugins.configureContentNegotiation
+import fr.hamtec.routes.configureAuth
 import fr.hamtec.routes.configureRouting
 import fr.hamtec.routes.configureTemplating
 import io.ktor.server.application.*
@@ -10,7 +11,8 @@ fun main(args: Array<String>) {
 }
 
 fun Application.module() {
-    configureSerialization()
+    configureContentNegotiation()
     configureTemplating()
+    configureAuth()
     configureRouting()
 }
