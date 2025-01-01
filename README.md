@@ -4,4 +4,6 @@
 2. Thymeleaf
 3. CIO
 ## Plugins
-ContentNegociation
+ContentNegociation<br>
+server-auth<br>
+auth0-jwt
