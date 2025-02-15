@@ -10,12 +10,13 @@ fun Application.configureRouting() {
     routing {
         staticResources("/static","static")
         authenticate("auth-basic") {
-            get("/") {
+            get("/x") {
                 call.respondText("Hello World!")
             }
         }
         get("/") {
             call.respondText("Welcome to the public endpoint!")
         }
+
     }
 }
