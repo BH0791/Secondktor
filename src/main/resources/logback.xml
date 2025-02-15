@@ -16,7 +16,7 @@
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%highlight(%-5level){FATAL=red, ERROR=red, WARN=yellow, INFO=green, DEBUG=cyan, TRACE=blue}  %yellow(%d{yyyy-MM-dd HH:mm:ss}) %red(%-5level) %logger{36} - %green(%msg%n) </pattern>
+            <pattern>%highlight(%-5level){FATAL=red, ERROR=red, WARN=yellow, INFO=green, DEBUG=cyan, TRACE=blue}  %yellow(%d{dd-MM-yyyy HH:mm:ss}) %red(%-5level) %logger{36} - %green(%msg%n) </pattern>
         </encoder>
     </appender>
 

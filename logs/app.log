@@ -1,0 +1,4 @@
+15-02-2025 01:17:50.859 [main] INFO  Application - [32mAutoreload is disabled because the development mode is off.
+[0;39m15-02-2025 01:17:51.084 [main] INFO  Application - [32mApplication started in 0.538 seconds.
+[0;39m15-02-2025 01:17:51.129 [DefaultDispatcher-worker-3] INFO  Application - [32mResponding at http://127.0.0.1:8080
+[0;39m

@@ -3,7 +3,7 @@ package fr.hamtec.slog
 import io.ktor.server.application.*
 import org.slf4j.LoggerFactory
 
-val logger = LoggerFactory.getLogger("HTTPLogger")
+val logger = LoggerFactory.getLogger("HTTP-HamTec")
 
 fun logHeaders(context: ApplicationCall) {
     context.request.headers.forEach { header, value ->
