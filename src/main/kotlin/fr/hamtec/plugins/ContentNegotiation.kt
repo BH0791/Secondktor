@@ -16,6 +16,10 @@ import nl.adaptivity.xmlutil.serialization.XML
 @OptIn(ExperimentalSerializationApi::class)
 fun Application.configureContentNegotiation() {
     install(ContentNegotiation){
+        xml(format = XML {
+            xmlDeclMode = XmlDeclMode.Charset
+            indentString = " "
+        })
         json(
             Json {
                 prettyPrint = true
@@ -24,10 +28,6 @@ fun Application.configureContentNegotiation() {
                 ignoreUnknownKeys = true
             }
         )
-        xml(format = XML {
-            xmlDeclMode = XmlDeclMode.Charset
-            indentString = " "
-        })
         cbor(Cbor {
             ignoreUnknownKeys = true
         })

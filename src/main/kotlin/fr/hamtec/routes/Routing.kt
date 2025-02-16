@@ -1,5 +1,6 @@
 package fr.hamtec.routes
 
+import fr.hamtec.data.Team
 import fr.hamtec.slog.logHeaders
 import fr.hamtec.slog.logResponseHeaders
 import fr.hamtec.slog.logger
@@ -13,32 +14,25 @@ import io.ktor.server.routing.*
 
 fun Application.configureRouting() {
     routing {
-//        staticResources("/static","static")
-//        authenticate("auth-basic") {
-//            get("/x") {
-//                call.respondText("Hello World!")
-//            }
-//        }
-//        get("/") {
-//            logger.info("***** Public endpoint")
-//            logHeaders(call)
-//            logResponseHeaders(call)
-//            call.respond("Welcome to the public endpoint!")
-//            logHeaders(call)
-//            logResponseHeaders(call)
-//        }
         logger.info("***** ROUTING *****")
-        get("/") {
+        get("/team") {
             logger.info("***** GET *****")
             logHeaders(call)
-            val acceptHeader = call.request.acceptItems()
-            if (acceptHeader.any { it.value == ContentType.Application.Json.toString() }) {
-                call.respond(HttpStatusCode.OK, mapOf("message" to "Welcome to the public endpoint!"))
-            } else {
-                call.respondText("Welcome to the public endpoint!", ContentType.Text.Plain)
-            }
+
+            val team = call.receive<Team>()
+            call.respondText("Hello, ${team.name}!")
+
             logger.info("***** GET FIN *****")
             logResponseHeaders(call)
+        }
+        get("/team/{team_id}") {
+            val teamId: Int? = call.parameters["team_id"]?.toIntOrNull()
+            if(teamId == null){
+                call.respond(HttpStatusCode.BadRequest, "team_id doit être un nombre entier")
+            } else {
+                val team = Team(teamId, "Laos")
+                call.respond(HttpStatusCode.OK, team)
+            }
         }
 
     }

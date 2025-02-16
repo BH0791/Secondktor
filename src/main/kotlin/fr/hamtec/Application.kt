@@ -14,5 +14,6 @@ fun Application.module() {
     configureContentNegotiation()
     configureTemplating()
     configureAuth()
+
     configureRouting()
 }
