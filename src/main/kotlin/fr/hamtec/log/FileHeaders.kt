@@ -1,4 +1,4 @@
-package fr.hamtec.slog
+package fr.hamtec.log
 
 import io.ktor.server.application.*
 import org.slf4j.LoggerFactory

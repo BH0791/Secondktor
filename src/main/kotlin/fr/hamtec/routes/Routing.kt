@@ -1,13 +1,11 @@
 package fr.hamtec.routes
 
 import fr.hamtec.data.Team
-import fr.hamtec.slog.logHeaders
-import fr.hamtec.slog.logResponseHeaders
-import fr.hamtec.slog.logger
+import fr.hamtec.log.logHeaders
+import fr.hamtec.log.logResponseHeaders
+import fr.hamtec.log.logger
 import io.ktor.http.*
 import io.ktor.server.application.*
-import io.ktor.server.auth.*
-import io.ktor.server.http.content.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
@@ -33,6 +31,17 @@ fun Application.configureRouting() {
                 val team = Team(teamId, "Laos")
                 call.respond(HttpStatusCode.OK, team)
             }
+        }
+        get("/tete") {
+            logger.info("***** GET *****")
+            logHeaders(call)
+
+            call.response.header("X-Man", 25)
+            val head = call.request.headers["X-Man"]
+            call.respondText("Accept-Language: $head")
+
+            logger.info("***** GET FIN *****")
+            logResponseHeaders(call)
         }
 
     }
