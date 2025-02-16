@@ -6,12 +6,19 @@ import fr.hamtec.log.logResponseHeaders
 import fr.hamtec.log.logger
 import io.ktor.http.*
 import io.ktor.server.application.*
+import io.ktor.server.http.content.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import io.ktor.server.routing.*
+import io.ktor.server.thymeleaf.*
 
 fun Application.configureRouting() {
     routing {
+        staticResources("/website", "frontend") {
+            exclude { url ->
+                url.path.startsWith("secret")
+            }
+        }
         logger.info("***** ROUTING *****")
         get("/team") {
             logger.info("***** GET *****")
@@ -25,7 +32,7 @@ fun Application.configureRouting() {
         }
         get("/team/{team_id}") {
             val teamId: Int? = call.parameters["team_id"]?.toIntOrNull()
-            if(teamId == null){
+            if(teamId == null) {
                 call.respond(HttpStatusCode.BadRequest, "team_id doit être un nombre entier")
             } else {
                 val team = Team(teamId, "Laos")
@@ -42,6 +49,10 @@ fun Application.configureRouting() {
 
             logger.info("***** GET FIN *****")
             logResponseHeaders(call)
+        }
+        get("/index") {
+            val teamUser = Team(1, "Mexique")
+            call.respond(ThymeleafContent("index", mapOf("user" to teamUser)))
         }
 
     }
